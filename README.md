@@ -23,6 +23,7 @@ Tạo file: mkdir wordpress_project
 
 
 
+<img width="1137" height="836" alt="image" src="https://github.com/user-attachments/assets/d3dd904b-cabd-4242-95db-223952ea76e3" />
 
 
 
@@ -31,57 +32,55 @@ Tạo file: mkdir wordpress_project
 
 services:
   db:
-    image: mariadb:latest
-    container_name: mariadb_db
+    image: mariadb:10.11
+    container_name: wp_db_new
     restart: always
-
     environment:
       MYSQL_ROOT_PASSWORD: root_password_day_ne
       MYSQL_DATABASE: wordpress_db
       MYSQL_USER: wp_user
       MYSQL_PASSWORD: wp_password
-
     volumes:
-      - db_data:/var/lib/mysql
-
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: phpmyadmin_ui
-    restart: always
-
-    ports:
-      - "8081:80"
-
-    environment:
-      PMA_HOST: db
-
-    depends_on:
-      - db
+      - db_data_new:/var/lib/mysql
+    networks:
+      - wp_net_new
 
   wordpress:
     image: wordpress:latest
-    container_name: wordpress_site
+    container_name: wp_app_new
     restart: always
-
-    ports:
-      - "8001:80"
-
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wp_user
       WORDPRESS_DB_PASSWORD: wp_password
       WORDPRESS_DB_NAME: wordpress_db
-
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME','https://wordpress.quyenmebechip.io.vn');
+        define('WP_SITEURL','https://wordpress.quyenmebechip.io.vn');
+        define('FORCE_SSL_ADMIN', true);
     depends_on:
       - db
-
     volumes:
-      - wp_data:/var/www/html
+      - wp_data_new:/var/www/html
+    networks:
+      - wp_net_new
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: wp_tunnel_new
+    restart: always
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: eyJhIjoiN2VkNjdjMDFhZjE2NDgxMTY0MzIwY2I3ODIyZjgzYzgiLCJ0IjoiNjIwOWU1YzctZTNiYy00OTAxLTg1OWUtNmVjNDg3NTUzMzRiIiwicyI6IllXUXhPR0psT0RVdFpqUXdOQzAwWWpZeUxUaGlPVGN0TUdaaU4yTmlaRGxoT1dGbSJ9
+    networks:
+      - wp_net_new
 
 volumes:
-  db_data:
-  wp_data:
+  db_data_new:
+  wp_data_new:
 
+networks:
+  wp_net_new:
 
 
 
@@ -158,3 +157,4 @@ volumes:
 
 
 
+<img width="1869" height="1080" alt="image" src="https://github.com/user-attachments/assets/c3c52037-aa16-4ba3-beac-76c2c51f3e4b" />
