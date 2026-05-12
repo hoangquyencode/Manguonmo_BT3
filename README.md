@@ -158,3 +158,49 @@ networks:
 
 
 <img width="1869" height="1080" alt="image" src="https://github.com/user-attachments/assets/c3c52037-aa16-4ba3-beac-76c2c51f3e4b" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ĐÁNH GIÁ VÀ NHẬN XÉT HỆ THỐNG TRIỂN KHAI MÃ NGUỒN MỞ
+1. Về hệ quản trị nội dung WordPress
+Tính tiện dụng và trực quan: WordPress không chỉ là một CMS mã nguồn mở mạnh mẽ mà còn là một môi trường quản trị nội dung cực kỳ thân thiện. Sau khi hoàn tất thiết lập hạ tầng kỹ thuật, việc sản xuất nội dung — như bài viết giới thiệu ngành học tại TNUT — trở nên đơn giản hóa qua trình soạn thảo khối (Gutenberg). Điều này cho phép người dùng tập trung tối đa vào tư duy sáng tạo nội dung mà không bị rào cản bởi kỹ năng lập trình chuyên sâu.
+
+Khả năng tùy biến đa phương tiện: Khả năng tích hợp linh hoạt các định dạng từ hình ảnh, âm thanh đến video nhúng (YouTube) giúp bài viết có chiều sâu, tính tương tác cao và chuyên nghiệp hơn hẳn so với các phương thức xây dựng web truyền thống.
+
+2. Ưu thế khi triển khai trên nền tảng Docker
+Quản trị tập trung: Thông qua công nghệ Docker Compose, việc điều phối và quản lý các dịch vụ tách biệt (MariaDB, phpMyAdmin, WordPress) được quy về một mối duy nhất. Điều này giúp hệ thống đạt được sự đồng bộ tuyệt đối.
+
+Tính đóng gói và ổn định (Isolation): Docker giúp cô lập môi trường chạy ứng dụng, đảm bảo website hoạt động ổn định và không phát sinh xung đột với các tiến trình khác trên hệ điều hành Ubuntu. Đây là yếu tố then chốt giúp việc bảo trì và sao lưu (Backup) dữ liệu trở nên an toàn, nhanh chóng.
+
+3. Phân tích hiệu năng và tài nguyên máy chủ
+Hiệu suất thực tế: Qua quan sát, hệ thống duy trì mức tiêu thụ ổn định khoảng 500MB - 800MB RAM ở trạng thái nhàn rỗi. Mức chiếm dụng tài nguyên này hoàn toàn tối ưu đối với các dòng máy chủ ảo (VPS) hoặc máy ảo VMware phổ thông hiện nay.
+
+Khả năng mở rộng: Cấu trúc này cho phép dễ dàng nâng cấp tài nguyên theo nhu cầu thực tế mà không cần cài đặt lại từ đầu, đảm bảo tính bền vững cho hệ thống lâu dài.
+
+TỔNG KẾT & ĐÁNH GIÁ
+Việc kết hợp giữa Docker, WordPress và Cloudflare Tunnel không chỉ là bài tập thực hành, mà còn là một giải pháp triển khai thực tế chuẩn quy trình DevOps hiện đại.
+
+Mặc dù quá trình cài đặt ban đầu phát sinh nhiều thách thức về cấu hình tên miền, xác thực Token và phân quyền tệp tin, nhưng chính những "rào cản" đó đã giúp sinh viên củng cố kiến thức sâu sắc về:
+
+          Cơ chế vận hành của Web Server và Database.
+
+          Kỹ năng quản trị hệ thống Linux chuyên sâu.
+
+          Tư duy xử lý mạng (Networking) và bảo mật trong môi trường Internet thực tế.
+
+
+
+
+
+
